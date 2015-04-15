@@ -1,2 +1,1 @@
-# thuylc_ldap
-thuylc_ldap
+Tapptic LDAP authentication
