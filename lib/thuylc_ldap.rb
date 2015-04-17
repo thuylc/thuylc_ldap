@@ -1,7 +1,7 @@
 require 'net/ldap'
 class ThuylcLdap
   REGEX = Regexp.compile(/(\w+)@tapptic\.com/)
-  
+
   def self.hello
     puts "Hello"
   end
@@ -10,17 +10,17 @@ class ThuylcLdap
   	ldap_config = YAML.load(ERB.new(File.read("#{Rails.root}/config/ldap.yml")).result)[Rails.env]
   end
 
-  def authenticate!
+  def authenticate!(username,password)
   	config = load_config
   	success = false
     email_from_ldap = nil
     begin
-      ldap = Net::LDAP.new(host: config.host,
+      ldap = Net::LDAP.new(host: config["host"],
                            port: 389,
                            auth: {
                                method: :simple,
-                               username: config.proxy_username,
-                               password: config.proxy_password
+                               username: config["proxy_username"],
+                               password: config["proxy_password"]
                            })
 
       filter = Net::LDAP::Filter.eq('uid', ldap_username)
