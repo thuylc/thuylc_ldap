@@ -37,10 +37,10 @@ class ThuylcLdap
 
       ldap.auth(dn, password)
       success = ldap.bind
-
-      unless success
-        Rails.logger.error("LDAP error: #{ldap.get_operation_result}")
-      end
+      return success
+      # unless success
+      #   Rails.logger.error("LDAP error: #{ldap.get_operation_result}")
+      # end
     rescue Net::LDAP::LdapError => e
       success = false
       Rails.logger.error("LDAP error: #{e}")
