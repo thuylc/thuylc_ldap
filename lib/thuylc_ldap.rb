@@ -23,7 +23,7 @@ class ThuylcLdap
                                password: config["proxy_password"]
                            })
 
-      filter = Net::LDAP::Filter.eq('uid', ldap_username(username))
+      filter = Net::LDAP::Filter.eq('uid', username)
       dn = nil
       ldap.search(base: config['search_base'], filter: filter, return_result: false) do |entry|
         entry.each do |attribute, values|
